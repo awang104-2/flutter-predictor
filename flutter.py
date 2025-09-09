@@ -51,6 +51,7 @@ def broydens_method(function, x0, max_iterations=1000, show_text=False):
         print("Did not converge.")
         return np.array([np.nan, np.nan])
 
+    print("Converged.")
     return xvec
 
 
@@ -89,28 +90,29 @@ def Mh(k):
     return 1 / 2
 
 
-x_alpha = 0.1
-omega_hs = np.linspace(0.1, 2, 50)
-list_of_speeds = []
-for i in range(50):
-    omega_h_normalized = omega_hs[i]
-    initial_guess = np.array([1, 1])
-    function = lambda x: F(x[0], x[1])
-    solutions = broydens_method(function, initial_guess)
-    omega, U = solutions
-    list_of_speeds.append(U)
-plt.plot(omega_hs, list_of_speeds)
+if __name__ == '__main__':
+    x_alpha = 0.1
+    omega_hs = np.linspace(0.1, 2, 50)
+    list_of_speeds = []
+    for i in range(50):
+        omega_h_normalized = omega_hs[i]
+        initial_guess = np.array([1, 1])
+        function = lambda x: F(x[0], x[1])
+        solutions = broydens_method(function, initial_guess)
+        omega, U = solutions
+        list_of_speeds.append(U)
+    plt.plot(omega_hs, list_of_speeds)
 
-x_alpha = 0.2
-omega_hs = np.linspace(0.1, 2, 50)
-list_of_speeds = []
-for i in range(50):
-    omega_h_normalized = omega_hs[i]
-    initial_guess = np.array([1, 1])
-    function = lambda x: F(x[0], x[1])
-    solutions = broydens_method(function, initial_guess)
-    omega, U = solutions
-    list_of_speeds.append(U)
-plt.plot(omega_hs, list_of_speeds)
-plt.show()
+    x_alpha = 0.2
+    omega_hs = np.linspace(0.1, 2, 50)
+    list_of_speeds = []
+    for i in range(50):
+        omega_h_normalized = omega_hs[i]
+        initial_guess = np.array([1, 1])
+        function = lambda x: F(x[0], x[1])
+        solutions = broydens_method(function, initial_guess)
+        omega, U = solutions
+        list_of_speeds.append(U)
+    plt.plot(omega_hs, list_of_speeds)
+    plt.show()
 
